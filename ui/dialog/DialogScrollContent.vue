@@ -1,27 +1,24 @@
 <script setup lang="ts">
+import type { DialogContentEmits, DialogContentProps } from "reka-ui";
+import type { HTMLAttributes } from "vue";
+
 import { cn } from "@/lib/utils";
 import { Cross2Icon } from "@radix-icons/vue";
+import { reactiveOmit } from "@vueuse/core";
 import {
   DialogClose,
   DialogContent,
-  type DialogContentEmits,
-  type DialogContentProps,
   DialogOverlay,
   DialogPortal,
   useForwardPropsEmits,
-} from "radix-vue";
-import { computed, type HTMLAttributes } from "vue";
+} from "reka-ui";
 
 const props = defineProps<
   DialogContentProps & { class?: HTMLAttributes["class"] }
 >();
 const emits = defineEmits<DialogContentEmits>();
 
-const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props;
-
-  return delegated;
-});
+const delegatedProps = reactiveOmit(props, "class");
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits);
 </script>
@@ -34,7 +31,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
       <DialogContent
         :class="
           cn(
-            'relative z-50 my-8 grid w-full max-w-lg gap-4 border border-border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full',
+            'relative z-50 grid w-full max-w-lg my-8 gap-4 border border-border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full',
             props.class,
           )
         "
@@ -55,9 +52,9 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
         <slot />
 
         <DialogClose
-          class="absolute right-4 top-4 rounded-md p-0.5 transition-colors hover:bg-secondary"
+          class="absolute top-4 right-4 p-0.5 transition-colors rounded-md hover:bg-secondary"
         >
-          <Cross2Icon class="h-4 w-4" />
+          <Cross2Icon class="w-4 h-4" />
           <span class="sr-only">Close</span>
         </DialogClose>
       </DialogContent>

@@ -1,0 +1,5 @@
+{
+  "permissions": {
+    "allow": ["Bash(bun run lint:eslint:*)", "Bash(bun run lint:prettier:*)"]
+  }
+}
