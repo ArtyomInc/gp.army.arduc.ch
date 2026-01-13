@@ -2,10 +2,9 @@
   <div class="flex flex-col gap-2.5">
     <div class="flex flex-col gap-1">
       <Label for="begin">Date et heure de commencement</Label>
-      <Input
+      <DateTimePicker
         id="begin"
         v-model="userField.begin"
-        type="datetime-local"
         @blur="touchedField[0] = true"
       />
       <Label v-if="touchedField[0] && !userField.begin" class="text-red-500"
@@ -14,10 +13,9 @@
     </div>
     <div class="flex flex-col gap-1">
       <Label for="end">Date et heure de fin</Label>
-      <Input
+      <DateTimePicker
         id="end"
         v-model="userField.end"
-        type="datetime-local"
         @blur="touchedField[1] = true"
       />
       <Label v-if="touchedField[1] && !userField.end" class="text-red-500"
@@ -121,6 +119,7 @@
 </template>
 
 <script setup lang="ts">
+import DateTimePicker from "@/components/DateTimePicker.vue";
 import MultiField from "@/components/MultiField.vue";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";

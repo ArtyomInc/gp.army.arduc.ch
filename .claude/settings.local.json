@@ -3,7 +3,8 @@
     "allow": [
       "Bash(bun run lint:eslint:*)",
       "Bash(bun run lint:prettier:*)",
-      "Bash(bun add:*)"
+      "Bash(bun add:*)",
+      "Bash(bun run dev)"
     ]
   }
 }
