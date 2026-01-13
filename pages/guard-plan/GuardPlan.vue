@@ -67,7 +67,7 @@
           </div>
         </template>
         <DialogFooter v-if="guardPlan">
-          <ExportPdf
+          <ExportXlsx
             :day="guardPlan.day"
             :period-count="numberOfPeriod"
             :period-duration="model.periodDuration"
@@ -91,7 +91,7 @@ import {
   randomID,
 } from "~/lib/utils";
 
-import ExportPdf from "./exportation/ExportPdf.vue";
+import ExportXlsx from "./exportation/ExportXlsx.vue";
 
 const model = defineModel<userForm>();
 
@@ -142,21 +142,30 @@ function generatePlan() {
     periodAffectationTmp.push("");
   }
   const colors = [
-    "bg-red-200",
-    "bg-yellow-200",
-    "bg-orange-200",
-    "bg-lime-200",
-    "bg-cyan-200",
+    "bg-emerald-200", // Vert émeraude vif
+    "bg-orange-200", // Orange militaire (gilets)
+    "bg-sky-200", // Bleu ciel (ONU)
+    "bg-yellow-200", // Jaune vif (signalisation)
+    "bg-purple-200", // Violet (distinction)
   ];
 
-  const periodAffectation: { name: string; class: string }[] = [];
+  // Extraire les noms uniques (en préservant l'ordre d'apparition)
+  const uniqueNames = [
+    ...new Set(periodAffectationTmp.filter((name) => name !== "")),
+  ];
 
-  periodAffectationTmp.forEach((value, index) => {
-    periodAffectation.push({
-      class: value !== "" ? colors[index] : "",
-      name: value,
-    });
+  // Créer un mapping nom → couleur
+  const colorByName: Record<string, string> = {};
+  uniqueNames.forEach((name, index) => {
+    colorByName[name] = colors[index % colors.length];
   });
+
+  // Appliquer les couleurs par nom
+  const periodAffectation: { name: string; class: string }[] =
+    periodAffectationTmp.map((name) => ({
+      class: name !== "" ? colorByName[name] : "",
+      name: name,
+    }));
 
   guardPlan.value = {
     day: [],

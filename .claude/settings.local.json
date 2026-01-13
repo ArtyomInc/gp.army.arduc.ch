@@ -4,7 +4,9 @@
       "Bash(bun run lint:eslint:*)",
       "Bash(bun run lint:prettier:*)",
       "Bash(bun add:*)",
-      "Bash(bun run dev)"
+      "Bash(bun run dev)",
+      "Bash(move:*)",
+      "Bash(bun remove:*)"
     ]
   }
 }
