@@ -2,27 +2,26 @@
 import type { HTMLAttributes } from "vue";
 
 import { cn } from "@/lib/utils";
-import { Primitive, type PrimitiveProps } from "radix-vue";
 
 import { type LinkVariants, linkVariants } from ".";
 
-interface Props extends PrimitiveProps {
+interface Props {
   variant?: LinkVariants["variant"];
   size?: LinkVariants["size"];
   class?: HTMLAttributes["class"];
+  href?: string;
+  target?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  as: "a",
-});
+const props = defineProps<Props>();
 </script>
 
 <template>
-  <Primitive
-    :as="as"
-    :as-child="asChild"
+  <NuxtLink
     :class="cn(linkVariants({ variant, size }), props.class)"
+    :href
+    :target
   >
     <slot />
-  </Primitive>
+  </NuxtLink>
 </template>

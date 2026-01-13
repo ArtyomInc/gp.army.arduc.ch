@@ -25,21 +25,23 @@
         </p>
       </div>
       <div class="flex justify-center items-center flex-col md:flex-row gap-3">
-        <a
+        <Link
           class="flex items-center hover:opacity-90 gap-2 bg-gradient-to-r from-violet-500 to-green-400 px-4 justify-center text-white rounded-lg py-2"
           href="/guard-plan"
           >Utiliser le générateur
           <Icon name="lucide:bar-chart-horizontal-big" size="20" />
-        </a>
-        <a
-          class="flex items-center gap-2 hover:bg-primary/10 px-4 justify-center text-foreground rounded-lg py-2"
+        </Link>
+        <Link
+          class="flex items-center gap-2 px-4 justify-center rounded-lg py-2"
           href="/about"
           >En savoir plus
           <Icon name="lucide:arrow-right" size="20" />
-        </a>
+        </Link>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Link } from "@/ui/link";
+</script>
