@@ -46,11 +46,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="pair in day.pair" :key="randomID">
+                <tr v-for="pair in day.pair" :key="randomID.toString()">
                   <td class="px-2 whitespace-nowrap">{{ pair.name }}</td>
                   <td
                     v-for="period in pair.period"
-                    :key="randomID"
+                    :key="randomID.toString()"
                     class="min-w-20"
                     :class="{
                       'dark:text-background': period.class,
