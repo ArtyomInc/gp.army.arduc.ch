@@ -17,18 +17,20 @@
       >
         <Icon name="mdi:github" />
       </Link>
-      <Dialog>
+      <Dialog v-model:open="isOpen">
         <DialogTrigger as-child>
-          <Button size="icon" @click="isOpen = !isOpen">
+          <Button size="icon">
             <Icon name="lucide:menu" size="20" />
           </Button>
         </DialogTrigger>
-        <DialogContent class="sm:max-w-[425px]">
+        <DialogContent aria-describedby="undefined">
           <div class="flex flex-col gap-3 mt-5">
             <template v-for="item in props.links" :key="item.name">
-              <Link :href="item.path">
-                {{ item.name }}
-              </Link>
+              <DialogClose as-child>
+                <Link :href="item.path">
+                  {{ item.name }}
+                </Link>
+              </DialogClose>
             </template>
           </div>
         </DialogContent>
@@ -38,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { Dialog, DialogContent, DialogTrigger } from "@/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/ui/dialog";
 import { Link } from "@/ui/link";
 
 import SwitchTheme from "./theme-switch/SwitchTheme.vue";

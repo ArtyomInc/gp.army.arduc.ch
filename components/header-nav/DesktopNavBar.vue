@@ -9,9 +9,11 @@
     </div>
     <div class="flex items-center gap-2">
       <template v-for="item in props.links" :key="item.name">
-        <Link 
-        class="shadow-none text-primary"
-        :href="item.path" :class="navigationMenuTriggerStyle()">
+        <Link
+          class="shadow-none text-primary"
+          :href="item.path"
+          :class="navigationMenuTriggerStyle()"
+        >
           {{ item.name }}
         </Link>
       </template>
