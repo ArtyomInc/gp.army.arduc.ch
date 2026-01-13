@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           bun install
-          bun generate
+          bun run build
 
       - name: Fix permissions
         run: |
@@ -32,7 +32,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: ".output/public/*"
+          source: ".output/*"
           rm: true
           target: /var/www/html/swiss-army-guard-plan.arduc.ch
-          strip_components: 2
+          strip_components: 1
