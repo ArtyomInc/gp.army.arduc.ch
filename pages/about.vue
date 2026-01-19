@@ -12,7 +12,7 @@
         >) et librement accéssible en open-source sur
         <Link
           class="text-violet-700 hover:underline bg-transparent py-0 px-0 shadow-none hover:bg-transparent"
-          href="https://github.com/ArtyomInc/swiss-army-guard-plan"
+          href="https://github.com/ArtyomInc/gp.army.arduc.ch"
           target="_blank"
           >github</Link
         >
